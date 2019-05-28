@@ -27,8 +27,17 @@
 }
 
 .bg-black{
-	background-color: #000;
+  background-color: #000;
+}
+
+.text-theme{
+  color: #b0a280
 }
 a {
   color:white;
+}
+
+.img-fit{
+  object-fit: cover;
+  max-width: 100%;	
 }

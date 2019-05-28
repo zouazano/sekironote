@@ -1,84 +1,18 @@
 .container
   .row
+    img.img-fit.img-fluid height="400" alt="sekironote" width="" src=asset_path("sekiro.png")
+    .col-12.mb-5
+      h1.text-theme sekiroの記録
+      span ここに説明
+      br
+      span を入れる予定
+      br
     .col-12
-      img.fluid alt="log-in" width="" src=asset_path("sekiro.png")
-      h1 Top#index
-      p Find me in app/views/top/index.html.erb
       a href = bosses_path
-        span bosses
-      br
-      - User.all.each do |user|
-        a href = user_path(user)
-          span = user.name
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
-      br
+        h2 ボス一覧
+      br
+      - Boss.all.each do |boss|
+        .border-bottom.mb-5
+          a href = boss_path(boss)
+            img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+            span.text-theme = boss.name
