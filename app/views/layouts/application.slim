@@ -10,10 +10,11 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+  body.bg-dark.text-white
     - if notice
       p.notice= notice
     - elsif alert
       p.alert= alert
     = render 'shared/header'
-    = yield
+    .modal-body.px-0.pt-0
+      = yield
