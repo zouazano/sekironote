@@ -1,3 +1,7 @@
 h1 Users#show
 p Find me in app/views/users/show.html.slim
 span = @user.name
+br
+- @user.bosses.each do |boss|
+  a href = boss_path
+    span = boss.name

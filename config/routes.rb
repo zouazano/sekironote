@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'users/show'
   devise_for :users
 
-  resources :bosses
+  resources :bosses do
+    resources :boss_logs, only: %i[new create]
+  end
 
   resources :users
 

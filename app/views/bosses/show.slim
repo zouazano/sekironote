@@ -1,3 +1,17 @@
 h1 Bosses#show
 p Find me in app/views/bosses/show.html.erb
 span = @boss.name
+br
+- if user_signed_in?
+  = link_to new_boss_boss_log_path(@boss)
+    span ログ作成
+br
+- @boss.boss_logs.each do |boss_log|
+  a href = user_path(boss_log.user)
+    span = boss_log.user.name
+    br
+    span #{boss_log.death_count}回
+    span #{boss_log.time}
+    span #{boss_log.comment}
+  br
+  br

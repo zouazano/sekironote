@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_174005) do
+ActiveRecord::Schema.define(version: 2019_05_28_182625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boss_logs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "boss_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "death_count"
+    t.time "time"
+    t.text "comment"
+    t.integer "difficulty"
+    t.index ["boss_id"], name: "index_boss_logs_on_boss_id"
+    t.index ["user_id"], name: "index_boss_logs_on_user_id"
+  end
 
   create_table "bosses", force: :cascade do |t|
     t.string "name"
@@ -38,4 +51,6 @@ ActiveRecord::Schema.define(version: 2019_05_28_174005) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "boss_logs", "bosses"
+  add_foreign_key "boss_logs", "users"
 end

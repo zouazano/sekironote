@@ -1,0 +1,18 @@
+= form_for @boss_log, url: boss_boss_logs_path do |f|
+  = f.hidden_field :user_id, value: @user.id
+  = f.hidden_field :boss_id, value: @boss.id
+  br
+  = f.label :death_count, "死亡回数", class:'control-label'
+  = f.number_field :death_count, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
+  br
+  = f.label :time, "タイム", class:'control-label'
+  = f.time_select :time, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
+  br
+  = f.label :comment, "コメント", class:'control-label'
+  = f.text_area :comment, class:'form-control', :placeholder => "無記入でも投稿できます"
+
+
+  br
+  br
+
+  = f.submit "投稿!", class:'form-control text-white bg-active'
