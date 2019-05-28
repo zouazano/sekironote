@@ -11,22 +11,23 @@
 
       #exampleModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" 
         .modal-dialog role="document"
-          .modal-content.bg-secondary
+          .modal-content.bg-dark
             .modal-header
               .modal-title
                 span#exampleModalLabel.modal-title 
-                  img.mb-1.img-fluid.rounded alt="log-in" width="24" height="24" src=asset_path("profile.png")
-                  span.font-weight-bold
+                  span.font-weight-bold MENU
               button.close aria-label="Close" data-dismiss="modal" type="button" 
                 span aria-hidden="true"  ×
             .modal-body
               a href=root_path
-                img.mb-1.img-fluid.rounded alt="mypage" width="24" height="24" src=asset_path("mypage.png")
+                img.mb-1.img-fluid.rounded alt="mypage" width="24" height="24" src=asset_path("home.png")
                 span.ml-5 HOME
               br
+              br
               a href=bosses_path
-                img.mb-1.img-fluid.rounded alt="mypage" width="24" height="24" src=asset_path("mypage.png")
+                img.mb-1.img-fluid.rounded alt="mypage" width="24" height="24" src=asset_path("bosses.png")
                 span.ml-5 ボス一覧
+              br
               br
               - if user_signed_in?
                 a href=user_path(current_user.id)
