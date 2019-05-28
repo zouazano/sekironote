@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :boss_logs, dependent: :destroy
   has_many :bosses, through: :boss_logs
+
+  def remember_me
+    true
+  end
 end
