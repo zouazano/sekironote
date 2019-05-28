@@ -1,9 +1,9 @@
-.container.bg-header
+.container.bg-header.pt-2
   .row
-    .col-10.d-flex.align-items-center
+    .col-10
       a href = root_path
         span.font-weight-bold.ml-1 SEKIROの音
-    .col-2.my-2
+    .col-2
       .div.float-right data-target="#exampleModal" data-toggle="modal"
         /- if current_user.image_stored?
           = image_tag current_user.image.thumb('26x26#').url, class:'img-fluid rounded-circle'
