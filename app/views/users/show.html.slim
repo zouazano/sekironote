@@ -1,7 +1,37 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
-span = @user.name
-br
-- @user.bosses.each do |boss|
-  a href = boss_path
-    span = boss.name
+.container
+  .row
+    .col-3
+      img.mx-auto.d-block.mt-2.img-fluid.rounded alt="#{@user.name}" width="50" height="50" src=asset_path("mypage-active.png")
+    .col-9
+      h1.mb-0.text-theme = @user.name
+      = link_to edit_user_registration_path
+        button.btn-block.btn.btn-outline-info.rounded-pill.p-1 type="button"
+          span.font-weight-bold.text-theme プロフィールを編集
+    .col-12.mt-3
+      table.table.table-sm.text-white
+        tbody
+          tr
+            th scope="row" 
+              span 合計死亡回数
+            td
+              - unless BossLog.where(user_id:@user.id).nil?
+                span.float-right #{BossLog.where(user_id:@user.id).count}回
+          tr
+            th scope="row" 
+              span 周回数
+            td
+              span.float-right 2周
+
+    .col-12
+      h2.text-theme ボス個人詳細
+      - @user.boss_logs.each do |boss_log|
+        a href = boss_path(boss_log.boss)
+          .row.border-bottom.mt-3.pb-2
+            .col-3
+              img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+            .col-9
+              span 2回目/
+              span.ml-2 #{boss_log.death_count}回死亡
+              br
+              span.pb-0
+                = simple_format(boss_log.comment, :class => "mb-0")
