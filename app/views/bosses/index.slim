@@ -1,6 +1,10 @@
-h1 Bosses#index
-p Find me in app/views/bosses/index.html.erb
-- Boss.all.each do |boss|
-  a href = boss_path(boss)
-    span = boss.name
-    br
+.container
+  .row
+    .col-12
+      h1.text-theme ボス一覧
+      br
+      - Boss.all.each do |boss|
+        .border-bottom.mb-5
+          a href = boss_path(boss)
+            img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+            span.text-theme = boss.name

@@ -1,17 +1,51 @@
-h1 Bosses#show
-p Find me in app/views/bosses/show.html.erb
-span = @boss.name
-br
-- if user_signed_in?
-  = link_to new_boss_boss_log_path(@boss)
-    span ログ作成
-br
-- @boss.boss_logs.each do |boss_log|
-  a href = user_path(boss_log.user)
-    span = boss_log.user.name
-    br
-    span #{boss_log.death_count}回
-    span #{boss_log.time}
-    span #{boss_log.comment}
-  br
-  br
+.container
+  .row
+    .col-12
+      h1.text-theme = @boss.name
+    .col-12
+      img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+      br
+      - if user_signed_in?
+        = link_to new_boss_boss_log_path(@boss)
+          button.mt-1.btn.btn-info.btn-lg.btn-block type="button"
+            span.font-weight-bold 挑む
+      - else
+        .div data-target="#exampleModal" data-toggle="modal"
+          button.mt-1.btn.btn-info.btn-lg.btn-block type="button"
+            span.font-weight-bold 挑む
+    .col-12.mt-5
+      span = @boss.info
+
+      table.table.table-sm.text-white
+        tbody
+          tr
+            th scope="row" 
+              span 平均死亡回数
+            td
+              - unless BossLog.where(boss_id:@boss.id).nil?
+                span.float-right #{BossLog.where(boss_id:@boss.id).average(:death_count)&.round(1)}回
+          tr
+            th scope="row" 
+              span 合計打倒数
+            td
+              span.float-right #{BossLog.where(boss_id:@boss.id).count}回
+          tr
+            th scope="row" 
+              span 平均勝率
+            td
+              /- unless BossLog.where(boss_id:@boss.id).nil?
+                span.float-right #{(BossLog.where(boss_id:@boss.id).count/BossLog.where(boss_id:@boss.id)&.average(:death_count))&.round(1)*100}%
+    .col-12.mt-5
+      h2.text-theme アドバイス・感想
+      - @boss.boss_logs.each do |boss_log|
+        .row.border-bottom
+          .col-2
+            a href = user_path(boss_log.user)
+              img.mt-2.mx-auto.d-block.mb-1.img-fluid.rounded alt="#{boss_log.user.name}" width="46" height="46" src=asset_path("mypage-active.png")
+          .col-10
+            span = boss_log.user.name
+            br
+            span.font-weight-bold #{boss_log.death_count}回死亡
+            br
+            /span #{boss_log.time}
+            span #{boss_log.comment}

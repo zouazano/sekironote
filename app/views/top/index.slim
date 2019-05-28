@@ -8,11 +8,16 @@
       span を入れる予定
       br
     .col-12
+      h2 人気のボス
       a href = bosses_path
-        h2 ボス一覧
+        span.border-bottom ボス一覧を見る
+    .col-12
       br
-      - Boss.all.each do |boss|
+      - Boss.first(6).each do |boss|
         .border-bottom.mb-5
           a href = boss_path(boss)
             img.img-fluid alt="boss" width="" src=asset_path("boss.png")
             span.text-theme = boss.name
+    .col-12
+      a href = bosses_path
+        span.float-right.border-bottom ボス一覧を見る
