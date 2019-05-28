@@ -1,0 +1,6 @@
+h1 Bosses#index
+p Find me in app/views/bosses/index.html.erb
+- Boss.all.each do |boss|
+  a href = boss_path(boss)
+    span = boss.name
+    br

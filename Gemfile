@@ -22,6 +22,8 @@ gem 'dragonfly', '~> 1.2.0'
 
 gem 'devise'
 
+gem 'slim-rails'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

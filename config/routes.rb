@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users
+
+  resources :bosses
+
+  resources :users
+
   get 'top/index'
 
   root to: "top#index"
