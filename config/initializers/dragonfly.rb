@@ -1,16 +1,31 @@
 require 'dragonfly'
+require 'dragonfly/s3_data_store'
+
 
 # Configure
 Dragonfly.app.configure do
   plugin :imagemagick
 
-  secret "b640b2f33d4415c14ebc233811ae05a74e113f8da4cd9284f0f77f6a6ba494cc"
+  secret "bd00442ad7740173b1b65a8713d66ee3022562c789f08805428ab21bb4feb9e2"
 
   url_format "/media/:job/:name"
 
-  datastore :file,
-    root_path: Rails.root.join('public/system/dragonfly', Rails.env),
-    server_root: Rails.root.join('public')
+  if Rails.env.development?
+    datastore :file,
+      root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+      server_root: Rails.root.join('public')
+  elsif Rails.env.test?
+    datastore :file,
+      root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+      server_root: Rails.root.join('public')
+  else
+    datastore :s3,
+      bucket_name: 'rails-photo-carrierwave',
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      region: 'ap-northeast-1'
+  end
+  
 end
 
 # Logger
