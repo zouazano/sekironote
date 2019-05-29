@@ -6,7 +6,10 @@
       - else
         img.mx-auto.d-block.mt-2.img-fluid.rounded alt="#{@user.name}" width="50" height="50" src=asset_path("mypage-active.png")
     .col-9
-      h1.mb-0.text-theme = @user.name
+      - unless @user.name.nil?
+        h1.mb-0.text-theme = @user.name
+      - else
+        h1.mb-0.text-theme 名無しさん
       = link_to edit_user_registration_path
         button.btn-block.btn.btn-outline-info.rounded-pill.p-1 type="button"
           span.font-weight-bold.text-theme プロフィールを編集
