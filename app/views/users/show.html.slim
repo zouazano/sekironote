@@ -2,7 +2,7 @@
   .row
     .col-3
       - if @user.image_stored?
-        = image_tag @user.image&.thumb('80x80#').url, class:'img-fluid rounded-circle'
+        = image_tag @user.image&.thumb('80x80#').url, class:'img-fluid rounded-circle mx-auto d-block'
       - else
         img.mx-auto.d-block.mt-2.img-fluid.rounded alt="#{@user.name}" width="50" height="50" src=asset_path("mypage-active.png")
     .col-9

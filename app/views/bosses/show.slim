@@ -42,7 +42,7 @@
           .col-3.mt-1
             a href = user_path(boss_log.user)
               - if boss_log.user.image_stored?
-                = image_tag boss_log.user.image&.thumb('46x46#').url, class:'img-fluid rounded-circle'
+                = image_tag boss_log.user.image&.thumb('46x46#').url, class:'mx-auto d-block img-fluid rounded-circle'
               - else
                 img.mx-auto.d-block.mt-2.img-fluid.rounded alt="#{boss_log.user.name}" width="46" height="46" src=asset_path("mypage-active.png")
           .col-9
