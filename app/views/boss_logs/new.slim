@@ -8,8 +8,8 @@
         = f.label :death_count, "死亡回数", class:'control-label'
         = f.number_field :death_count, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
         br
-        = f.label :time, "タイム", class:'control-label'
-        = f.time_select :time, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
+        /= f.label :play_time, "タイム", class:'control-label'
+        /= f.time_select :play_time, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
         br
         = f.label :comment, "コメント", class:'control-label'
         = f.text_area :comment, class:'form-control', :placeholder => "無記入でも投稿できます"
