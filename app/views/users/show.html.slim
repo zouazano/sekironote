@@ -10,9 +10,10 @@
         h1.mb-0.text-theme = @user.name
       - else
         h1.mb-0.text-theme 名無しさん
-      = link_to edit_user_registration_path
-        button.btn-block.btn.btn-outline-info.rounded-pill.p-1 type="button"
-          span.font-weight-bold.text-theme プロフィールを編集
+      - if user_signed_in? and @user.id == current_user.id
+        = link_to edit_user_registration_path
+          button.btn-block.btn.btn-outline-info.rounded-pill.p-1 type="button"
+            span.font-weight-bold.text-theme プロフィールを編集
     .col-12.mt-3
       table.table.table-sm.text-white
         tbody
