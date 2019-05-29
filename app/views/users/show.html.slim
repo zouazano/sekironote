@@ -1,7 +1,10 @@
 .container
   .row
     .col-3
-      img.mx-auto.d-block.mt-2.img-fluid.rounded alt="#{@user.name}" width="50" height="50" src=asset_path("mypage-active.png")
+      - if @user.image_stored?
+        = image_tag @user.image&.thumb('80x80#').url, class:'img-fluid rounded-circle'
+      - else
+        img.mx-auto.d-block.mt-2.img-fluid.rounded alt="#{@user.name}" width="50" height="50" src=asset_path("mypage-active.png")
     .col-9
       h1.mb-0.text-theme = @user.name
       = link_to edit_user_registration_path
