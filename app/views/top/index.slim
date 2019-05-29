@@ -16,7 +16,10 @@
       - Boss.first(6).each do |boss|
         .border-bottom.mb-5
           a href = boss_path(boss)
-            img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+            - if boss.image_stored?
+              = image_tag boss.image&.thumb('630x355#').url, class:'img-fluid'
+            - else
+              img.img-fluid alt="boss" width="" src=asset_path("boss.png")
             br
             span.text-theme = boss.name
     .col-12

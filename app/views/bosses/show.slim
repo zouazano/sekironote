@@ -3,7 +3,10 @@
     .col-12
       h1.text-theme = @boss.name
     .col-12
-      img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+      - if @boss.image_stored?
+        = image_tag @boss.image&.thumb('630x355#').url, class:'img-fluid'
+      - else
+        img.img-fluid alt="boss" width="" src=asset_path("boss.png")
       br
       - if user_signed_in?
         = link_to new_boss_boss_log_path(@boss)
@@ -16,7 +19,7 @@
     .col-12.mt-5
       span = @boss.info
 
-      table.table.table-sm.text-white
+      table.table.table-sm.text-white.mt-5
         tbody
           tr
             th scope="row" 
