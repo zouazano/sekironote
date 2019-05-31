@@ -15,7 +15,7 @@
               .modal-title
                 span#exampleModalLabel.modal-title 
                   = search_form_for(@q, url:bosses_path) do |f|
-                    = f.submit :class=>"form-control p-2 col-2 float-right d-inline text-theme bg-info float-right", :type=>"image", :src=>asset_path("search_form.png"), :width=>24, :height=>24
+                    = f.submit :class=>"form-control p-1 col-2 float-right d-inline bg-info font-weight-bold text-white float-right", :value=>"Go"
                     = f.search_field :name_cont, class:'form-control col-9 float-right d-inline text-muted', :placeholder => "ボスの名前で検索"
 
     .col-2
