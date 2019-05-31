@@ -23,12 +23,12 @@
             | 共有する
 
     .col-12
-      h2 人気のボス
+      h2 みんなが苦戦してるボスランキング
       a href = bosses_path
         span.border-bottom ボス一覧を見る
     .col-12
       br
-      - Boss.all.sort_by {|boss| boss.boss_logs.where(lap: 1).where.not(death_count: nil).average(:death_count)&.round(1)}.reverse.first(6).each do |boss|
+      - Boss.all.sort_by {|boss| boss.boss_logs.where(lap: 1).where.not(death_count: nil).average(:death_count)&.round(1)}.reverse.first(6).each_with_index do |boss, i|
         .border-bottom.mt-5
           a href = boss_path(boss)
             - if boss.image_stored?
@@ -36,7 +36,7 @@
             - else
               img.img-fluid alt="boss" width="" src=asset_path("boss.png")
             br
-            h2.text-theme = boss.name
+            h2.text-theme #{i+1}位:#{boss.name}
         span.text-theme 初めて倒すまでの平均死亡回数: 
         span.text-white #{BossLog.where(boss_id:boss.id).where(lap: 1).average(:death_count)&.round(1)}
         span.text-theme 回
