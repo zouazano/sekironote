@@ -1,12 +1,27 @@
 .container
   .row
     img.img-fit.img-fluid height="400" alt="sekironote" width="" src=asset_path("sekiro.png")
-    .col-12.mb-5
+    .col-12
       h1.text-theme sekiroの記録
-      span ここに説明
-      br
-      span を入れる予定、ボスに挑んで云々
-      br
+    .col-12.mb-5.bg-white
+      .row
+        .col-4.p-2
+          img.mx-auto.d-block.img-fluid alt="boss" width="" src=asset_path("tuto1.png")
+          br
+          span.text-theme.font-weight-bold 
+            | 戦うボスを
+            | 探す
+        .col-4.p-2
+          img.mx-auto.d-block.img-fluid alt="boss" width="" src=asset_path("tuto2.png")
+          span.text-theme.font-weight-bold 
+            | 死亡回数や
+            | 感想を記録する
+        .col-4.p-2
+          img.mx-auto.d-block.img-fluid alt="boss" width="" src=asset_path("tuto3.png")
+          span.text-theme.font-weight-bold 
+            | 戦いの記録を
+            | 共有する
+
     .col-12
       h2 人気のボス
       a href = bosses_path
