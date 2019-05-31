@@ -3,13 +3,24 @@
     .col-12
       h1.text-theme ボス一覧
       br
-      - Boss.all.sort_by {|boss| boss.created_at}.each do |boss|
-        .border-bottom.mb-5
-          a href = boss_path(boss)
-            - if boss.image_stored?
-              = image_tag boss.image&.thumb('630x355#').url, class:'img-fluid'
-            - else
-              img.img-fluid alt="boss" width="" src=asset_path("boss.png")
-            
-            br
-            span.text-theme = boss.name
+      - unless @bosses.nil?
+        - @bosses.all.sort_by {|boss| boss.created_at}.each do |boss|
+          .border-bottom.mb-5
+            a href = boss_path(boss)
+              - if boss.image_stored?
+                = image_tag boss.image&.thumb('630x355#').url, class:'img-fluid'
+              - else
+                img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+              br
+              span.text-theme = boss.name
+        - if @bosses.first.nil?
+          span.text-white ボスが見つからないときは
+          br
+          a href = bosses_path
+            span.text-theme ボス一覧
+          span.text-white から探すか、
+          br
+          a href = "https://twitter.com/sekironote" target="blank"
+            span.text-theme 管理人のツイッター
+          span.text-white までDMやリプでご連絡ください。
+          br
