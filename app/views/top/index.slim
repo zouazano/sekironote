@@ -28,15 +28,18 @@
         span.border-bottom ボス一覧を見る
     .col-12
       br
-      - Boss.all.sort_by {|boss| boss.boss_logs.count}.reverse.first(6).each do |boss|
-        .border-bottom.mb-5
+      - Boss.all.sort_by {|boss| boss.boss_logs.where(lap: 1).where.not(death_count: nil).average(:death_count)&.round(1)}.reverse.first(6).each do |boss|
+        .border-bottom.mt-5
           a href = boss_path(boss)
             - if boss.image_stored?
               = image_tag boss.image&.thumb('630x355#').url, class:'img-fluid'
             - else
               img.img-fluid alt="boss" width="" src=asset_path("boss.png")
             br
-            span.text-theme = boss.name
+            h2.text-theme = boss.name
+        span.text-theme 初めて倒すまでの平均死亡回数: 
+        span.text-white #{BossLog.where(boss_id:boss.id).where(lap: 1).average(:death_count)&.round(1)}
+        span.text-theme 回
     .col-12
       a href = bosses_path
         span.float-right.border-bottom ボス一覧を見る

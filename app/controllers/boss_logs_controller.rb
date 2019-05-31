@@ -19,6 +19,6 @@ class BossLogsController < ApplicationController
   private
 
   def boss_log_params
-    params[:boss_log].permit(:death_count, :play_time, :comment, :difficulty)
+    params[:boss_log].permit(:death_count, :play_time, :comment, :difficulty, :lap)
   end
 end

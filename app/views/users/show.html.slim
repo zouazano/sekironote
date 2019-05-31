@@ -35,10 +35,16 @@
         a href = boss_path(boss_log.boss)
           .row.border-bottom.mt-3.pb-2
             .col-3
-              img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+              - if boss_log.boss.image_stored?
+                = image_tag boss_log.boss.image&.thumb('630x355#').url, class:'img-fluid'
+              - else
+                img.img-fluid alt="boss" width="" src=asset_path("boss.png")
             .col-9
-              span 2回目/
-              span.ml-2 #{boss_log.death_count}回死亡
+              - unless boss_log.lap.nil?
+                span.font-weight-bold #{boss_log.lap}周目
+              - else
+                span.font-weight-bold -周目
+              span.font-weight-bold.ml-2 #{boss_log.death_count}回死亡
               br
               span.pb-0
                 = simple_format(boss_log.comment, :class => "mb-0")

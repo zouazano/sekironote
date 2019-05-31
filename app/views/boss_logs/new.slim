@@ -5,6 +5,9 @@
         = f.hidden_field :user_id, value: @user.id
         = f.hidden_field :boss_id, value: @boss.id
         br
+        = f.label :lap, "何周目か", class:'control-label'
+        = f.number_field :lap, min:"0", step:"1", class:'form-control', :placeholder => "例:1"
+        br
         = f.label :death_count, "死亡回数", class:'control-label'
         = f.number_field :death_count, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
         br
