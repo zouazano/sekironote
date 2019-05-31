@@ -3,7 +3,7 @@
     .col-12
       h1.text-theme ボス一覧
       br
-      - Boss.all.each do |boss|
+      - Boss.all.sort_by {|boss| boss.created_at}.each do |boss|
         .border-bottom.mb-5
           a href = boss_path(boss)
             - if boss.image_stored?

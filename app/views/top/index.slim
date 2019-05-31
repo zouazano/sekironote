@@ -28,7 +28,7 @@
         span.border-bottom ボス一覧を見る
     .col-12
       br
-      - Boss.first(6).each do |boss|
+      - Boss.all.sort_by {|boss| boss.boss_logs.count}.reverse.first(6).each do |boss|
         .border-bottom.mb-5
           a href = boss_path(boss)
             - if boss.image_stored?
