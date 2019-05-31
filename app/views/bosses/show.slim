@@ -26,6 +26,12 @@
         tbody
           tr
             th scope="row" 
+              span 初めて倒すまでの平均死亡回数
+            td
+              - unless BossLog.where(boss_id:@boss.id).nil?
+                span.float-right #{BossLog.where(boss_id:@boss.id).where(lap: 1).average(:death_count)&.round(1)}回
+          tr
+            th scope="row" 
               span 平均死亡回数
             td
               - unless BossLog.where(boss_id:@boss.id).nil?
@@ -39,7 +45,7 @@
             th scope="row" 
               span 平均勝率
             td
-              /- unless BossLog.where(boss_id:@boss.id).nil?
+              - unless BossLog.where(boss_id:@boss.id).nil?
                 span.float-right #{(BossLog.where(boss_id:@boss.id).count/BossLog.where(boss_id:@boss.id)&.average(:death_count))&.round(1)*100}%
     .col-12.mt-5
       h2.text-theme アドバイス・感想

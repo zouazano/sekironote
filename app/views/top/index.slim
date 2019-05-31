@@ -28,7 +28,7 @@
         span.border-bottom ボス一覧を見る
     .col-12
       br
-      - Boss.all.sort_by {|boss| boss.boss_logs.where(lap: 1).where.not(death_count: nil).average(:death_count)&.round(1)}.reverse.first(6).each_with_index do |boss, i|
+      - Boss.all.sort_by {|boss| boss.boss_logs&.where(lap: 1).where.not(death_count: nil).average(:death_count)&.round(1)}.reverse.first(10).each_with_index do |boss, i|
         .border-bottom.mt-5
           a href = boss_path(boss)
             - if boss.image_stored?
