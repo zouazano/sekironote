@@ -49,7 +49,7 @@
                 span.float-right #{(BossLog.where(boss_id:@boss.id).count/BossLog.where(boss_id:@boss.id)&.average(:death_count))&.round(1)*100}%
     .col-12.mt-5
       h2.text-theme アドバイス・感想
-      - @boss.boss_logs.sort_by{ |boss_log| boss_log.created_at}.reverse.each do |boss_log|
+      - @boss.boss_logs.where(done:true).sort_by{ |boss_log| boss_log.created_at}.reverse.each do |boss_log|
         .row.border-bottom.py-2
           .col-3.mt-1
             a href = user_path(boss_log.user)

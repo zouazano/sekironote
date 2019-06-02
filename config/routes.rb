@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   } 
 
   resources :bosses do
-    resources :boss_logs, only: %i[new create]
+    resources :boss_logs, only: %i[new create edit update]
   end
 
   resources :users

@@ -9,10 +9,29 @@ class BossLogsController < ApplicationController
     @user = current_user
     @boss = Boss.find(params[:boss_id])
     @boss_log = @boss.boss_logs.build(boss_log_params)
-    if BossLog.where(user_id: @user.id, boss_id:@boss.id).create(boss_log_params)
-      redirect_to boss_path(@boss)
+    @boss_log.update(user_id: @user.id, boss_id:@boss.id)
+    if @boss_log.save
+      redirect_to edit_boss_boss_log_path(@boss, @boss_log.id)
     else
       redirect_to root_url
+    end
+  end
+
+  def edit
+    @boss_log = BossLog.find(params[:id])
+  end
+
+  def update
+    @boss_log = BossLog.find(params[:id])
+    if params[:commit] == "+"
+      @boss_log.update(death_count: @boss_log.death_count+1, comment: boss_log_params[:comment])
+      render :edit
+    elsif params[:commit] == "-"
+      @boss_log.update(death_count: @boss_log.death_count-1, comment: boss_log_params[:comment])
+      render :edit
+    else
+      @boss_log.update(comment: boss_log_params[:comment], done:true)
+      redirect_to boss_path(@boss_log.boss)
     end
   end
 

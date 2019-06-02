@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-12
+      = form_for @boss_log, url: boss_boss_log_path do |f|
+        /br
+          = f.label :lap, "何周目か", class:'control-label'
+          = f.number_field :lap, min:"0", step:"1", class:'form-control', :placeholder => "例:1"
+        br
+        = f.label :death_count, "死亡回数", class:'control-label'
+        br
+        = f.number_field :death_count, min:"0", step:"1", class:'form-control bg-white col-3 d-inline', :value => @boss_log.death_count, :disabled => true
+        = f.submit "-", class:'float-right ml-2 form-control bg-info font-weight-bold text-white border-info col-3 d-inline'
+        = f.submit "+", class:'float-right form-control bg-info font-weight-bold text-white border-info col-3 d-inline'
+
+        br
+        br
+        = f.label :comment, "コメント", class:'control-label'
+        = f.text_area :comment, class:'form-control', :value => @boss_log.comment
+        br
+        br
+
+        = f.submit "投稿", class:'form-control bg-info font-weight-bold text-white border-info'

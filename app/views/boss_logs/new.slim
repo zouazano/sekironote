@@ -6,17 +6,17 @@
         = f.hidden_field :boss_id, value: @boss.id
         br
         = f.label :lap, "何周目か", class:'control-label'
-        = f.number_field :lap, min:"0", step:"1", class:'form-control', :placeholder => "例:1"
-        br
-        = f.label :death_count, "死亡回数", class:'control-label'
-        = f.number_field :death_count, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
-        br
-        /= f.label :play_time, "タイム", class:'control-label'
-        /= f.time_select :play_time, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
-        br
-        = f.label :comment, "コメント", class:'control-label'
-        = f.text_area :comment, class:'form-control', :placeholder => "無記入でも投稿できます"
+        = f.number_field :lap, min:"0", step:"1", class:'form-control', :value => 1
+        /br
+            = f.label :death_count, "死亡回数", class:'control-label'
+            = f.number_field :death_count, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
+            br
+            /= f.label :play_time, "タイム", class:'control-label'
+            /= f.time_select :play_time, min:"0", step:"1", class:'form-control', :placeholder => "例:12"
+            br
+            = f.label :comment, "コメント", class:'control-label'
+            = f.text_area :comment, class:'form-control', :placeholder => "無記入でも投稿できます"
         br
         br
 
-        = f.submit "投稿", class:'form-control bg-info font-weight-bold text-white border-info'
+        = f.submit "戦闘を開始する", class:'form-control bg-info font-weight-bold text-white border-info'
