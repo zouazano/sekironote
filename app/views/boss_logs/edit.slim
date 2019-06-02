@@ -18,5 +18,10 @@
         = f.text_area :comment, class:'form-control', :value => @boss_log.comment
         br
         br
-
-        = f.submit "投稿", class:'form-control bg-info font-weight-bold text-white border-info'
+        = f.submit "一時保存", class:'float-left col-5 form-control d-inline bg-info font-weight-bold text-white border-info'
+        = f.submit "投稿", class:'float-right col-5 form-control d-inline bg-info font-weight-bold text-white border-info'
+        - if flash[:note]
+          .alert.alert-info.alert-dismissible.fade.show.float-left.mt-2 role="alert" 
+            p = flash[:note]
+            button.close aria-label="Close" data-dismiss="alert" type="button" 
+              span aria-hidden="true"  ×

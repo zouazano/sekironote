@@ -29,6 +29,10 @@ class BossLogsController < ApplicationController
     elsif params[:commit] == "-"
       @boss_log.update(death_count: @boss_log.death_count-1, comment: boss_log_params[:comment])
       render :edit
+    elsif params[:commit] == "一時保存"
+      @boss_log.update(comment: boss_log_params[:comment])
+      flash.now[:note] = '一時保存されました'
+      render :edit
     else
       @boss_log.update(comment: boss_log_params[:comment], done:true)
       redirect_to boss_path(@boss_log.boss)
