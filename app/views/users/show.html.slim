@@ -51,13 +51,14 @@
               br
               span.pb-0
                 = simple_format(boss_log.comment, :class => "mb-0")
+              br
               .row
                 .col-6.float-left
                   a href = edit_boss_boss_log_path(boss_log.boss, boss_log.id)
                     button.mt-1.btn.btn-info.btn-block type="button"
-                      span 再開
+                      span.font-weight-bold 再開
                 .col-6.float-right
-                  = link_to "削除", boss_log_path(boss_log.id), method: :delete, class: 'mt-1 btn btn-info btn-block', data: { confirm: '本当に削除しますか?' }
+                  = link_to "削除", boss_log_path(boss_log.id), method: :delete, class: 'mt-1 btn btn-info btn-block font-weight-bold', data: { confirm: '本当に削除しますか?' }
                   /= link_to "削除", boss_boss_log_path(boss_log.boss, boss_log.id), method: :delete, class: 'mt-1 btn btn-info btn-block'
                   /a href = boss_log_path(boss_log), method: :delete
                     button.mt-1.btn.btn-info.btn-block type="button"
