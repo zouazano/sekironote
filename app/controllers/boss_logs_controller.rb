@@ -31,7 +31,7 @@ class BossLogsController < ApplicationController
       render :edit
     elsif params[:commit] == "一時保存"
       @boss_log.update(comment: boss_log_params[:comment])
-      flash.now[:note] = '一時保存されました'
+      flash.now[:note] = '一時保存されました  マイページから再開できます'
       render :edit
     else
       @boss_log.update(comment: boss_log_params[:comment], done:true)

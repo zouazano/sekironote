@@ -12,8 +12,9 @@
         = f.label :death_count, "死亡回数", class:'control-label'
         br
         = f.number_field :death_count, min:"0", step:"1", class:'form-control bg-white col-3 d-inline', :value => @boss_log.death_count, :disabled => true
-        = f.submit "-", class:'float-right ml-2 form-control bg-info font-weight-bold text-white border-info col-3 d-inline'
         = f.submit "+", class:'float-right form-control bg-info font-weight-bold text-white border-info col-3 d-inline'
+        = f.submit "-", class:'float-right ml-2 form-control bg-info font-weight-bold text-white border-info col-3 d-inline'
+
 
         br
         br
