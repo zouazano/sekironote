@@ -4,7 +4,7 @@
       h1.text-theme ボス一覧
       br
       - unless @bosses.nil?
-        - @bosses.all.sort_by {|boss| boss.created_at}.each do |boss|
+        - @bosses.all.sort_by{|boss| boss.created_at}.each do |boss|
           .border-bottom.mt-5
             a href = boss_path(boss)
               - if boss.image_stored?

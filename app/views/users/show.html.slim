@@ -28,10 +28,40 @@
               span 周回数
             td
               span.float-right 2周
-
+    - if user_signed_in? and @user.id == current_user.id
+      .col-12.mb-5
+        h2.text-theme 一時保存中のボス
+        - @user.boss_logs.where(done:false).sort_by{|boss_log| boss_log.updated_at}.reverse.each do |boss_log|
+          .row.border-bottom.mt-3.pb-2
+            .col-3
+              - if boss_log.boss.image_stored?
+                = image_tag boss_log.boss.image&.thumb('630x355#').url, class:'img-fluid'
+              - else
+                img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+            .col-9
+              - unless boss_log.lap.nil?
+                span.font-weight-bold #{boss_log.lap}周目
+              - else
+                span.font-weight-bold -周目
+              span.font-weight-bold.ml-2 #{boss_log.death_count}回死亡
+              span.text-theme.text-no-wrap.float-right #{time_ago_in_words(boss_log.updated_at)}
+              br
+              span.pb-0
+                = simple_format(boss_log.comment, :class => "mb-0")
+              .row
+                .col-6.float-left
+                  a href = edit_boss_boss_log_path(boss_log.boss, boss_log.id)
+                    button.mt-1.btn.btn-info.btn-block type="button"
+                      span 再開
+                .col-6.float-right
+                  = link_to "削除", boss_log_path(boss_log.id), method: :delete, class: 'mt-1 btn btn-info btn-block', data: { confirm: '本当に削除しますか?' }
+                  /= link_to "削除", boss_boss_log_path(boss_log.boss, boss_log.id), method: :delete, class: 'mt-1 btn btn-info btn-block'
+                  /a href = boss_log_path(boss_log), method: :delete
+                    button.mt-1.btn.btn-info.btn-block type="button"
+                      span 削除
     .col-12
       h2.text-theme ボス個人詳細
-      - @user.boss_logs.each do |boss_log|
+      - @user.boss_logs.where(done:true).sort_by{|boss_log| boss_log.updated_at}.reverse.each do |boss_log|
         a href = boss_path(boss_log.boss)
           .row.border-bottom.mt-3.pb-2
             .col-3
@@ -45,6 +75,10 @@
               - else
                 span.font-weight-bold -周目
               span.font-weight-bold.ml-2 #{boss_log.death_count}回死亡
+              span.text-theme.text-no-wrap.float-right #{time_ago_in_words(boss_log.updated_at)}
               br
               span.pb-0
                 = simple_format(boss_log.comment, :class => "mb-0")
+
+    br
+    br

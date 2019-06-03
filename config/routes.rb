@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :bosses do
     resources :boss_logs, only: %i[new create edit update]
   end
+  resources :boss_logs, only: %i[destroy]
 
   resources :users
 

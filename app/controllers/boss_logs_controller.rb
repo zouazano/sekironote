@@ -39,6 +39,13 @@ class BossLogsController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    @boss_log = BossLog.find(params[:id])
+    @boss_log.destroy
+    redirect_to user_path(@user)
+  end
+
   private
 
   def boss_log_params
