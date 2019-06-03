@@ -1,5 +1,8 @@
 .container
   .row
+    .col-12.mb-2
+      a href = boss_path(@boss_log.boss)
+        span.font-weight-bold.text-info ◀ ボスページに戻る
     .col-12
       = form_for @boss_log, url: boss_boss_log_path do |f|
         /br

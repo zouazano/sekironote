@@ -34,10 +34,11 @@
         - @user.boss_logs.where(done:false).sort_by{|boss_log| boss_log.updated_at}.reverse.each do |boss_log|
           .row.border-bottom.mt-3.pb-2
             .col-3
-              - if boss_log.boss.image_stored?
-                = image_tag boss_log.boss.image&.thumb('630x355#').url, class:'img-fluid'
-              - else
-                img.img-fluid alt="boss" width="" src=asset_path("boss.png")
+              a href = boss_path(boss_log.boss)
+                - if boss_log.boss.image_stored?
+                  = image_tag boss_log.boss.image&.thumb('630x355#').url, class:'img-fluid'
+                - else
+                  img.img-fluid alt="boss" width="" src=asset_path("boss.png")
             .col-9
               - unless boss_log.lap.nil?
                 span.font-weight-bold #{boss_log.lap}周目
