@@ -7,28 +7,31 @@
 
         br/
         .field
-          = f.label :アイコン画像
+          = f.label :アイコン画像, class:'control-label'
           br/
-          = f.file_field :image, class: 'form-control'
+          = f.file_field :image, class: 'form-control', class:'form-control'
+        br/
+        .field
+          = f.label :ユーザーネーム, class:'control-label'
           br/
+          = f.text_field :name, class:'form-control'
+        br/
+        = f.label :現在の周回数, class:'control-label'
+        br/
+        = f.number_field :lap, class:'form-control', :value => 1
+        br/
+        = f.label :自己紹介, class:'control-label'
+        br/
+        = f.text_area :profile, class:'form-control', :placeholder => current_user.profile
+        br
+        .field
+          = f.label :メールアドレス, class:'control-label'
           br/
-          = f.label :ユーザーネーム
-          br/
-          = f.text_field :name
-          br/
-          br/
-          = f.label :自己紹介
-          br/
-          = f.text_area :profile
-          br/
-          br/
-          = f.label :メールアドレス
-          br/
-          = f.email_field :email, autofocus: true, autocomplete: "email"
+          = f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control'
         br/
         br/
         .actions
-          = f.submit :class=>"form-control d-inline bg-active", :value=>"変更を保存"
+          = f.submit :class=>"form-control d-inline bg-info border-info text-white font-weight-bold", :value=>"変更を保存"
         br
         br
         br

@@ -25,9 +25,9 @@
                 span.float-right #{@death_counts.compact.sum}回
           tr
             th scope="row" 
-              span 周回数
+              span 現在の周回数
             td
-              span.float-right 2周
+              span.float-right #{@user.lap}周
     - if user_signed_in? and @user.id == current_user.id
       .col-12.mb-5
         h2.text-theme 一時保存中のボス
