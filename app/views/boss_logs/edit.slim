@@ -24,12 +24,13 @@
         br
         = f.label :item, "使用アイテム", class:'control-label'
         br
-        = f.text_field :item, class:'form-control bg-white col-6 d-inline'
-
-        br
+        = f.text_field :item, class:'form-control bg-white col-6'
         br
         = f.label :comment, "勝利後のコメント", class:'control-label'
         = f.text_area :comment, class:'form-control', :value => @boss_log.comment
+        br
+        = f.label :link, "プレイ動画のリンク", class:'control-label'
+        = f.text_field :link, class:'form-control'
         br
         br
         = f.submit "一時保存", class:'float-left col-5 form-control d-inline bg-info font-weight-bold text-white border-info'

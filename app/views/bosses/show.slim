@@ -79,4 +79,13 @@
               span.font-weight-bold.ml-2 アイテム: -
             br
             /span #{boss_log.play_time}
-            span #{boss_log.comment}
+            = simple_format(boss_log.comment, :class => "mb-0")
+            br
+            - unless boss_log.link.nil?
+              a href = "http://#{boss_log.link}" target="blank"
+                button.mt-1.btn.btn-info.btn-block type="button"
+                  span.font-weight-bold プレイ動画
+            - if user_signed_in? and current_user.id == boss_log.user.id
+              a href = edit_boss_boss_log_path(boss_log.boss, boss_log.id)
+                button.mt-1.btn.btn-info.btn-block type="button"
+                  span.font-weight-bold 編集

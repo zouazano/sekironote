@@ -24,17 +24,17 @@ class BossLogsController < ApplicationController
   def update
     @boss_log = BossLog.find(params[:id])
     if params[:commit] == "+"
-      @boss_log.update(death_count: @boss_log.death_count+1, comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item])
+      @boss_log.update(death_count: @boss_log.death_count+1, comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item], link: boss_log_params[:link])
       render :edit
     elsif params[:commit] == "-"
-      @boss_log.update(death_count: @boss_log.death_count-1, comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item])
+      @boss_log.update(death_count: @boss_log.death_count-1, comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item], link: boss_log_params[:link])
       render :edit
     elsif params[:commit] == "一時保存"
-      @boss_log.update(comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item])
-      flash.now[:note] = '一時保存されました  マイページから再開できます'
-      render :edit
+      @boss_log.update(comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item], link: boss_log_params[:link])
+      flash[:note] = '一時保存されました 以下から再開できます'
+      redirect_to user_path(@boss_log.user)
     else
-      @boss_log.update(comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item], done:true)
+      @boss_log.update(comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item], link: boss_log_params[:link], done:true)
       redirect_to boss_path(@boss_log.boss)
     end
   end
@@ -49,6 +49,6 @@ class BossLogsController < ApplicationController
   private
 
   def boss_log_params
-    params[:boss_log].permit(:death_count, :play_time, :comment, :difficulty, :lap, :medicine_count, :item)
+    params[:boss_log].permit(:death_count, :play_time, :comment, :difficulty, :lap, :medicine_count, :item, :link)
   end
 end
