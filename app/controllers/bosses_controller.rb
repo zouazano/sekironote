@@ -6,6 +6,10 @@ class BossesController < ApplicationController
 
   def show
   	@boss = Boss.find(params[:id])
+    @death_counts = []
+    BossLog.where(boss_id:@boss.id).where(done:true).each do |boss_log|
+      @death_counts << boss_log.death_count
+    end
   end
 
   private
