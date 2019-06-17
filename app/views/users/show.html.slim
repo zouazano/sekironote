@@ -98,7 +98,7 @@
             span.pb-0
               = simple_format(boss_log.comment, :class => "mb-0")
             br
-            - unless boss_log.link.nil?
+            - unless boss_log.link.nil? or boss_log.link == ""
               a href = "http://#{boss_log.link}" target="blank"
                 button.mt-1.btn.btn-info.btn-block type="button"
                   span.font-weight-bold プレイ動画
