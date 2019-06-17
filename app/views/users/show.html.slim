@@ -81,6 +81,15 @@
               span.font-weight-bold.ml-2 #{boss_log.death_count}回死亡
               span.text-theme.text-no-wrap.float-right #{time_ago_in_words(boss_log.updated_at)}
               br
+              - unless boss_log.medicine_count.nil?
+                span.font-weight-bold 瓢箪: #{boss_log.medicine_count}回
+              - else
+                span.font-weight-bold 瓢箪: -
+              - unless boss_log.item.nil?
+                span.font-weight-bold.ml-2 アイテム: #{boss_log.item}
+              - else
+                span.font-weight-bold.ml-2 アイテム: -
+              br
               span.pb-0
                 = simple_format(boss_log.comment, :class => "mb-0")
 

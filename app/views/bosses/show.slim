@@ -48,7 +48,7 @@
               - unless BossLog.where(boss_id:@boss.id).nil?
                 span.float-right #{(BossLog.where(boss_id:@boss.id).count/BossLog.where(boss_id:@boss.id)&.average(:death_count))&.round(1)*100}%
     .col-12.mt-5
-      h2.text-theme アドバイス・感想
+      h2.text-theme 感想・アドバイス
       - @boss.boss_logs.where(done:true).sort_by{ |boss_log| boss_log.created_at}.reverse.each do |boss_log|
         .row.border-bottom.py-2
           .col-3.mt-1
@@ -68,6 +68,16 @@
             - else
               span.font-weight-bold -周目
             span.font-weight-bold.ml-2 #{boss_log.death_count}回死亡
+            span.text-theme.text-no-wrap.float-right #{time_ago_in_words(boss_log.updated_at)}
+            br
+            - unless boss_log.medicine_count.nil?
+              span.font-weight-bold 瓢箪: #{boss_log.medicine_count}回
+            - else
+              span.font-weight-bold 瓢箪: -
+            - unless boss_log.item.nil?
+              span.font-weight-bold.ml-2 アイテム: #{boss_log.item}
+            - else
+              span.font-weight-bold.ml-2 アイテム: -
             br
             /span #{boss_log.play_time}
             span #{boss_log.comment}

@@ -24,17 +24,17 @@ class BossLogsController < ApplicationController
   def update
     @boss_log = BossLog.find(params[:id])
     if params[:commit] == "+"
-      @boss_log.update(death_count: @boss_log.death_count+1, comment: boss_log_params[:comment])
+      @boss_log.update(death_count: @boss_log.death_count+1, comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item])
       render :edit
     elsif params[:commit] == "-"
-      @boss_log.update(death_count: @boss_log.death_count-1, comment: boss_log_params[:comment])
+      @boss_log.update(death_count: @boss_log.death_count-1, comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item])
       render :edit
     elsif params[:commit] == "一時保存"
-      @boss_log.update(comment: boss_log_params[:comment])
+      @boss_log.update(comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item])
       flash.now[:note] = '一時保存されました  マイページから再開できます'
       render :edit
     else
-      @boss_log.update(comment: boss_log_params[:comment], done:true)
+      @boss_log.update(comment: boss_log_params[:comment], medicine_count: boss_log_params[:medicine_count], item: boss_log_params[:item], done:true)
       redirect_to boss_path(@boss_log.boss)
     end
   end
@@ -49,6 +49,6 @@ class BossLogsController < ApplicationController
   private
 
   def boss_log_params
-    params[:boss_log].permit(:death_count, :play_time, :comment, :difficulty, :lap)
+    params[:boss_log].permit(:death_count, :play_time, :comment, :difficulty, :lap, :medicine_count, :item)
   end
 end
